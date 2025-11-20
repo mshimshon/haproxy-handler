@@ -98,12 +98,14 @@ echo "Scripts downloaded successfully."
 
 # Create wrapper script
 echo "Creating wrapper command..."
-cat > "$BIN_WRAPPER" << 'EOF'
+cat > "$BIN_WRAPPER" <<EOF
 #!/bin/bash
 
 HANDLER_DIR="$HANDLER_DIR"
-VERSION_FILE="\$HANDLER_DIR/.version"
+VERSION_FILE="$HANDLER_DIR/.version"
+EOF
 
+cat > "$BIN_WRAPPER" << 'EOF'
 # Map friendly names to script files
 declare -A SCRIPT_MAP=(
     ["add-alias"]="exec_add_alias.sh"
