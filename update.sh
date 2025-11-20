@@ -30,7 +30,7 @@ fi
 
 # Download latest setup.sh
 echo "Downloading latest setup.sh..."
-wget -q -O "$SETUP_SCRIPT" "$DOWNLOAD_ROOT/setup.sh" || {
+wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$SETUP_SCRIPT" "$DOWNLOAD_ROOT/setup.sh" || {
     echo "ERROR: Failed to download setup.sh"
     exit 1
 }
@@ -39,7 +39,7 @@ chmod +x "$SETUP_SCRIPT"
 echo "Downloaded setup.sh"
 
 # Fetch remote version
-REMOTE_VERSION=$(curl -s "$DOWNLOAD_ROOT/.version" 2>/dev/null || echo "")
+REMOTE_VERSION=$(curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -s "$DOWNLOAD_ROOT/.version" 2>/dev/null || echo "")
 
 if [ -z "$REMOTE_VERSION" ]; then
     echo "ERROR: Could not fetch version information"

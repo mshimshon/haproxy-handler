@@ -21,7 +21,7 @@ else
 fi
 
 # Get remote version (no need to download, just curl it)
-REMOTE_VERSION=$(curl -s "$DOWNLOAD_ROOT/.version" 2>/dev/null || echo "")
+REMOTE_VERSION=$(curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -s "$DOWNLOAD_ROOT/.version" 2>/dev/null || echo "")
 
 if [ -z "$REMOTE_VERSION" ]; then
     echo "ERROR: Could not fetch version information from $DOWNLOAD_ROOT/.version"
