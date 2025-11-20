@@ -3,10 +3,11 @@ set -e
 
 # Configuration
 
-SETUP_SCRIPT="$HANDLER_DIR/setup.sh"
 
-source ./shared_constraint_root.sh
-source ./shared_variables.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_variables.sh"
+SETUP_SCRIPT="$HANDLER_DIR/setup.sh"
 
 echo "=========================================="
 echo "HAProxy Handler Update"

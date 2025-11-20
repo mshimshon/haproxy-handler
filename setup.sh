@@ -6,11 +6,13 @@ DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/
 BIN_WRAPPER="/usr/local/bin/hphandler"
 
 
-wget -q -O "shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
-wget -q -O "shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
+wget -q -O "./shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
+wget -q -O "./shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
+source "$HANDLER_DIR/shared_variables.sh"
+source "./shared_constraint_root.sh"
 
-source ./shared_constraint_root.sh
-source ./shared_variables.sh
+
+
 VERSION_FILE="$HANDLER_DIR/.version"
 # Script names
 ADD_ALIAS_SCRIPT="exec_add_alias.sh"
@@ -65,7 +67,10 @@ fi
 
 # Change to handler directory for downloads
 cd "$HANDLER_DIR"
-
+wget -q -O "$HANDLER_DIR/shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
+wget -q -O "$HANDLER_DIR/shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
+rm "./shared_variables.sh"
+rm "./shared_constraint_root.sh"
 # Download scripts
 echo "Downloading scripts from $DOWNLOAD_ROOT..."
 

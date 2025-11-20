@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
-source ./shared_constraint_root.sh
-source ./shared_variables.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_variables.sh"
 
 # bash add_alias.sh "n8n-staging.fiscorax.com" "n8n.fiscorax.com"
 

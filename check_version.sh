@@ -2,8 +2,9 @@
 set -e
 
 
-source ./shared_constraint_root.sh
-source ./shared_variables.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_variables.sh"
 
 VERSION_FILE="$HANDLER_DIR/.version"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-source ./shared_constraint_root.sh
-source ./shared_variables.sh
+source "$HANDLER_DIR/shared_constraint_root.sh"
+source "$HANDLER_DIR/shared_variables.sh"
 
 
 
