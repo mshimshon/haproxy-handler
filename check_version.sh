@@ -35,6 +35,6 @@ if [ "$CURRENT_VERSION" = "$REMOTE_VERSION" ]; then
     echo "✓ You are on the latest version"
     exit 0
 else
-    echo "→ Update available! Run 'hphandler update' to upgrade"
+    echo "→ Update available! Run 'hphandler upgrade' to upgrade"
     exit 0
 fi
