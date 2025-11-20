@@ -98,7 +98,7 @@ echo "Scripts downloaded successfully."
 
 # Create wrapper script
 echo "Creating wrapper command..."
-cat > "$BIN_WRAPPER" <<EOF
+cat > "$BIN_WRAPPER" << 'EOF'
 #!/bin/bash
 
 HANDLER_DIR="$HANDLER_DIR"
@@ -190,15 +190,7 @@ if [ ! -f "\$SCRIPT_PATH" ]; then
 fi
 
 # Execute the script with sudo if not root (for commands that need it)
-if [ "\$COMMAND" = "update" ] || [ "\$COMMAND" = "install" ] || [ "\$COMMAND" = "uninstall" ] || [ "\$COMMAND" = "add-alias" ] || [ "\$COMMAND" = "remove-alias" ] || [ "\$COMMAND" = "merge-maps" ]; then
-    if [ "\$EUID" -ne 0 ]; then
-        exec sudo "\$SCRIPT_PATH" "\$@"
-    else
-        exec "\$SCRIPT_PATH" "\$@"
-    fi
-else
-    exec "\$SCRIPT_PATH" "\$@"
-fi
+exec "\$SCRIPT_PATH" "\$@"
 EOF
 
 chmod +x "$BIN_WRAPPER"
