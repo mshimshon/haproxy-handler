@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 
-DOWNLOAD_ROOT="https://domain.com/haproxy-handler"
-HANDLER_DIR="/etc/haproxy-handler"
 VERSION_FILE="$HANDLER_DIR/.version"
+
+source ./shared_constraint_root.sh
+source ./shared_variables.sh
 
 echo "Checking for updates..."
 

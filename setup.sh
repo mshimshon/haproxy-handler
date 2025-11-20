@@ -2,10 +2,15 @@
 set -e
 
 # Configuration
-DOWNLOAD_ROOT="https://domain.com/haproxy-handler"
-HANDLER_DIR="/etc/haproxy-handler"
+DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/heads/main/"
 BIN_WRAPPER="/usr/local/bin/hphandler"
 VERSION_FILE="$HANDLER_DIR/.version"
+
+wget -q -O "shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
+wget -q -O "shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
+
+source ./shared_constraint_root.sh
+source ./shared_variables.sh
 
 # Script names
 ADD_ALIAS_SCRIPT="exec_add_alias.sh"
@@ -29,11 +34,6 @@ echo "=========================================="
 echo "HAProxy Handler Setup v$VERSION"
 echo "=========================================="
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]; then 
-    echo "ERROR: Please run as root or with sudo"
-    exit 1
-fi
 
 # Check current version
 if [ -f "$VERSION_FILE" ]; then
@@ -82,7 +82,7 @@ ALL_SCRIPTS=(
 for script in "${ALL_SCRIPTS[@]}"; do
     echo "  - Downloading $script..."
     wget -q -O "$script" "$DOWNLOAD_ROOT/$script" || {
-        echo "ERROR: Failed to download $script"
+        echo "ERROR: Failed to download $DOWNLOAD_ROOT/$script"
         exit 1
     }
     chmod +x "$script"

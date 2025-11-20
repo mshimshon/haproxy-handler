@@ -2,10 +2,11 @@
 set -e
 
 # Configuration
-DOWNLOAD_ROOT="https://domain.com/haproxy-handler"
-HANDLER_DIR="/etc/haproxy-handler"
 VERSION_FILE="$HANDLER_DIR/.version"
 SETUP_SCRIPT="$HANDLER_DIR/setup.sh"
+
+source ./shared_constraint_root.sh
+source ./shared_variables.sh
 
 echo "=========================================="
 echo "HAProxy Handler Update"

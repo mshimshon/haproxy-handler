@@ -1,3 +1,5 @@
 DOMAINS_DIR="/etc/haproxy/domains"
 MERGED_MAP="/etc/haproxy/domain-map.txt"
 SERVERS_DIR="/etc/haproxy/servers"
+HANDLER_DIR="/etc/haproxy-handler"
+DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/heads/main/"
