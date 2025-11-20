@@ -5,7 +5,7 @@ set -e
 
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_constraint_root.sh" || exit 1
 source "$SCRIPT_DIR/shared_variables.sh"
 SETUP_SCRIPT="$HANDLER_DIR/setup.sh"
 
@@ -13,11 +13,7 @@ echo "=========================================="
 echo "HAProxy Handler Update"
 echo "=========================================="
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]; then 
-    echo "ERROR: Please run as root or with sudo"
-    exit 1
-fi
+
 
 # Show current version
 if [ -f "$VERSION_FILE" ]; then

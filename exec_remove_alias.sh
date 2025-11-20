@@ -2,7 +2,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_constraint_root.sh" || exit 1
 source "$SCRIPT_DIR/shared_variables.sh"
 # bash remove_alias.sh "n8n-staging.fiscorax.com"
 

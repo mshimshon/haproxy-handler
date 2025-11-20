@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/shared_constraint_root.sh"
+source "$SCRIPT_DIR/shared_constraint_root.sh" || exit 1
 source "$SCRIPT_DIR/shared_variables.sh"
 
 # Check if jq is installed, if not install it
