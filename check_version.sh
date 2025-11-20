@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
-VERSION_FILE="$HANDLER_DIR/.version"
 
 source ./shared_constraint_root.sh
 source ./shared_variables.sh
+
+VERSION_FILE="$HANDLER_DIR/.version"
 
 echo "Checking for updates..."
 
