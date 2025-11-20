@@ -89,9 +89,8 @@ echo "Adding alias to map file..."
 echo "${NEW_HOSTNAME} ${TARGET_BACKEND}" >> "$TARGET_MAP_FILE"
 echo "Alias added successfully."
 
-# 5. Merge all domain maps
 echo "Merging domain maps..."
-./compile_domain_mapping.sh
+bash "$MERGE_SCRIPT_FILE"
 
 # 6. Reload HAProxy
 echo "Reloading HAProxy..."

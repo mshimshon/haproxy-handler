@@ -65,7 +65,7 @@ echo "Hostname removed from map file."
 
 # 5. Merge all domain maps
 echo "Merging domain maps..."
-./compile_domain_mapping.sh
+bash "$MERGE_SCRIPT_FILE"
 
 # 6. Reload HAProxy
 echo "Reloading HAProxy..."

@@ -171,7 +171,7 @@ echo "Domain mapping file created successfully."
 
 # 4. Merge all domain maps into single file
 echo "Merging domain maps..."
-/usr/local/bin/haproxy-merge-maps.sh
+bash "$MERGE_SCRIPT_FILE"
 
 # 5. Reload HAProxy
 echo "Reloading HAProxy..."

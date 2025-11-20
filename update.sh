@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-VERSION_FILE="$HANDLER_DIR/.version"
+
 SETUP_SCRIPT="$HANDLER_DIR/setup.sh"
 
 source ./shared_constraint_root.sh

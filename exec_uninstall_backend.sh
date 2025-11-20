@@ -51,9 +51,8 @@ else
     echo "WARNING: Backend config file '$BACKEND_CFG' not found"
 fi
 
-# 4. Merge remaining domain maps
 echo "Merging domain maps..."
-./compile_domain_mapping.sh
+bash "$MERGE_SCRIPT_FILE"
 
 # 5. Reload HAProxy
 echo "Reloading HAProxy..."
