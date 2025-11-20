@@ -105,7 +105,8 @@ HANDLER_DIR="$HANDLER_DIR"
 VERSION_FILE="$HANDLER_DIR/.version"
 EOF
 
-cat > "$BIN_WRAPPER" << 'EOF'
+
+cat >> "$BIN_WRAPPER" <<'EOF'
 # Map friendly names to script files
 declare -A SCRIPT_MAP=(
     ["add-alias"]="exec_add_alias.sh"
@@ -118,9 +119,9 @@ declare -A SCRIPT_MAP=(
 )
 
 # Handle version command
-if [ "\$1" = "version" ] || [ "\$1" = "--version" ] || [ "\$1" = "-v" ]; then
-    if [ -f "\$VERSION_FILE" ]; then
-        echo "HAProxy Handler v\$(cat \$VERSION_FILE)"
+if [ "$1" = "version" ] || [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
+    if [ -f "$VERSION_FILE" ]; then
+        echo "HAProxy Handler v$(cat $VERSION_FILE)"
     else
         echo "HAProxy Handler (version unknown)"
     fi
@@ -128,8 +129,8 @@ if [ "\$1" = "version" ] || [ "\$1" = "--version" ] || [ "\$1" = "-v" ]; then
 fi
 
 # Show usage if no arguments
-if [ \$# -eq 0 ]; then
-    cat << USAGE
+if [ $# -eq 0 ]; then
+    cat <<USAGE
 HAProxy Handler - Manage HAProxy backends and domains
 
 Usage: hphandler <command> [arguments]
@@ -137,63 +138,51 @@ Usage: hphandler <command> [arguments]
 Commands:
   install <backend_group> <hostname> <backend_name> <servers_json>
       Install a new backend with domain mapping
-      Example: hphandler install "n8n_backend" "n8n.fiscorax.com" "n8n_server" '[["10.0.2.107", "5678", "check"]]'
 
   uninstall <hostname>
       Uninstall backend by hostname
-      Example: hphandler uninstall "n8n.fiscorax.com"
 
   add-alias <new_hostname> <existing_hostname>
-      Add domain alias to existing backend
-      Example: hphandler add-alias "n8n-test.fiscorax.com" "n8n.fiscorax.com"
+      Add domain alias...
 
   remove-alias <hostname>
-      Remove domain alias (keeps backend if other domains exist)
-      Example: hphandler remove-alias "n8n-test.fiscorax.com"
+      Remove domain alias...
 
   merge-maps
-      Manually trigger domain map merge and reload
-      Example: hphandler merge-maps
+      Manually trigger domain map merge...
 
   version
       Show installed version
-      Example: hphandler version
 
   update
       Check for available updates
-      Example: hphandler update
 
   upgrade
       Check for and install updates
-      Example: hphandler upgrade
 
 USAGE
     exit 0
 fi
 
-COMMAND=\$1
+COMMAND=$1
 shift
 
-# Map command to script
-if [ -z "\${SCRIPT_MAP[\$COMMAND]}" ]; then
-    echo "ERROR: Unknown command '\$COMMAND'"
-    echo "Run 'hphandler' without arguments to see usage"
+if [ -z "${SCRIPT_MAP[$COMMAND]}" ]; then
+    echo "ERROR: Unknown command '$COMMAND'"
     exit 1
 fi
 
-SCRIPT_FILE="\${SCRIPT_MAP[\$COMMAND]}"
-SCRIPT_PATH="\$HANDLER_DIR/\$SCRIPT_FILE"
+SCRIPT_FILE="${SCRIPT_MAP[$COMMAND]}"
+SCRIPT_PATH="$HANDLER_DIR/$SCRIPT_FILE"
 
-# Check if script exists
-if [ ! -f "\$SCRIPT_PATH" ]; then
-    echo "ERROR: Script not found: \$SCRIPT_PATH"
-    echo "Please reinstall with: sudo bash setup.sh"
+if [ ! -f "$SCRIPT_PATH" ]; then
+    echo "ERROR: Script not found: $SCRIPT_PATH"
     exit 1
 fi
 
-# Execute the script with sudo if not root (for commands that need it)
-exec "\$SCRIPT_PATH" "\$@"
+exec "$SCRIPT_PATH" "$@"
 EOF
+
 
 chmod +x "$BIN_WRAPPER"
 echo "Wrapper installed at $BIN_WRAPPER"
