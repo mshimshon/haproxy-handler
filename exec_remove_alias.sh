@@ -55,8 +55,6 @@ echo "Hostnames in map file: $LINE_COUNT"
 # 3. Check if this is the only hostname
 if [ "$LINE_COUNT" -eq 1 ]; then
     echo "ERROR: Cannot remove the only hostname from backend '$BACKEND_GROUP'"
-    echo "This backend has only one domain associated with it."
-    echo "Use remove.sh to remove the entire backend instead."
     exit 1
 fi
 
