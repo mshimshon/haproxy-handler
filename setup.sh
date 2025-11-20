@@ -8,7 +8,7 @@ BIN_WRAPPER="/usr/local/bin/hphandler"
 
 wget -q -O "./shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
 wget -q -O "./shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
-source "$HANDLER_DIR/shared_variables.sh"
+source "./shared_variables.sh"
 source "./shared_constraint_root.sh"
 
 
