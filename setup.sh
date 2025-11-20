@@ -6,8 +6,8 @@ DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/
 BIN_WRAPPER="/usr/local/bin/hphandler"
 
 
-wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "./shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
-wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "./shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
+wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "./shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh?nocache=$(date +%s%N)"
+wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "./shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh?nocache=$(date +%s%N)"
 source "./shared_variables.sh"
 source "./shared_constraint_root.sh"
 
@@ -25,7 +25,7 @@ CHECK_VERSION_SCRIPT="check_version.sh"
 
 # Fetch version from repository
 echo "Fetching version information..."
-VERSION=$(curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -s "$DOWNLOAD_ROOT/.version" 2>/dev/null || echo "")
+VERSION=$(curl -H "Cache-Control: no-cache" -H "Pragma: no-cache" -s "$DOWNLOAD_ROOT/.version?nocache=$(date +%s%N)" 2>/dev/null || echo "")
 
 if [ -z "$VERSION" ]; then
     echo "ERROR: Could not fetch version from $DOWNLOAD_ROOT/.version"
@@ -67,8 +67,8 @@ fi
 
 # Change to handler directory for downloads
 cd "$HANDLER_DIR"
-wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
-wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
+wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh?nocache=$(date +%s%N)"
+wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh?nocache=$(date +%s%N)"
 rm "./shared_variables.sh"
 rm "./shared_constraint_root.sh"
 # Download scripts
