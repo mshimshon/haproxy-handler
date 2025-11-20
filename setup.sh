@@ -66,11 +66,12 @@ else
 fi
 
 # Change to handler directory for downloads
-cd "$HANDLER_DIR"
 wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh?nocache=$(date +%s%N)"
 wget --no-cache --header="Cache-Control: no-cache" --header="Pragma: no-cache" -q -O "$HANDLER_DIR/shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh?nocache=$(date +%s%N)"
 rm "./shared_variables.sh"
 rm "./shared_constraint_root.sh"
+cd "$HANDLER_DIR"
+
 # Download scripts
 echo "Downloading scripts from $DOWNLOAD_ROOT..."
 
