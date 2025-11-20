@@ -4,14 +4,14 @@ set -e
 # Configuration
 DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/heads/main"
 BIN_WRAPPER="/usr/local/bin/hphandler"
-VERSION_FILE="$HANDLER_DIR/.version"
+
 
 wget -q -O "shared_constraint_root.sh" "$DOWNLOAD_ROOT/shared_constraint_root.sh"
 wget -q -O "shared_variables.sh" "$DOWNLOAD_ROOT/shared_variables.sh"
 
 source ./shared_constraint_root.sh
 source ./shared_variables.sh
-
+VERSION_FILE="$HANDLER_DIR/.version"
 # Script names
 ADD_ALIAS_SCRIPT="exec_add_alias.sh"
 REMOVE_ALIAS_SCRIPT="exec_remove_alias.sh"
@@ -105,8 +105,8 @@ declare -A SCRIPT_MAP=(
     ["install"]="exec_install_backend.sh"
     ["uninstall"]="exec_uninstall_backend.sh"
     ["merge-maps"]="exec_merge_maps.sh"
-    ["update"]="update.sh"
-    ["check-version"]="check_version.sh"
+    ["upgrade"]="update.sh"
+    ["update"]="check_version.sh"
 )
 
 # Handle version command
@@ -151,13 +151,13 @@ Commands:
       Show installed version
       Example: hphandler version
 
-  check-version
-      Check for available updates
-      Example: hphandler check-version
-
   update
-      Check for and install updates
+      Check for available updates
       Example: hphandler update
+
+  upgrade
+      Check for and install updates
+      Example: hphandler upgrade
 
 USAGE
     exit 0
@@ -224,9 +224,9 @@ echo ""
 echo "Installed version: $VERSION"
 echo ""
 echo "Usage examples:"
-echo "  hphandler version"
-echo "  hphandler check-version"
+echo "  hphandler --version"
 echo "  hphandler update"
+echo "  hphandler upgrade"
 echo "  hphandler install \"n8n_backend\" \"n8n.fiscorax.com\" \"n8n_server\" '[[\"10.0.2.107\", \"5678\", \"check\"]]'"
 echo "  hphandler add-alias \"n8n-test.fiscorax.com\" \"n8n.fiscorax.com\""
 echo "  hphandler remove-alias \"n8n-test.fiscorax.com\""
