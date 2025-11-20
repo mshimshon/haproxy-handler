@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/heads/main/"
+DOWNLOAD_ROOT="https://raw.githubusercontent.com/mshimshon/haproxy-handler/refs/heads/main"
 BIN_WRAPPER="/usr/local/bin/hphandler"
 VERSION_FILE="$HANDLER_DIR/.version"
 
